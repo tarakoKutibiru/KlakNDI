@@ -1,8 +1,8 @@
-using UnityEngine;
-using UnityEngine.UI;
+﻿using Klak.Ndi;
 using System.Collections.Generic;
 using System.Linq;
-using Klak.Ndi;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class SourceSelector : MonoBehaviour
 {
@@ -16,7 +16,11 @@ public class SourceSelector : MonoBehaviour
     // three child objects only while it's opened.
     bool IsOpened => _dropdown.transform.childCount > 3;
 
-    void Start() => _receiver = GetComponent<NdiReceiver>();
+    void Start()
+    {
+        WifiManager.GetInstance().SetupNetwork();
+        _receiver = GetComponent<NdiReceiver>();
+    }
 
     void Update()
     {
